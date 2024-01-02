@@ -36,3 +36,16 @@ input {
 .screen {
     margin-top: 10px;
 }
+
+
+.row-5 {
+    display: flex;
+    justify-content: space-around;
+    border: 2px solid blue;
+}
+
+.zero-btn {
+
+    text-align: left;
+    width: 32.6%;
+}
