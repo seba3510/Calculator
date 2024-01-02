@@ -10,17 +10,14 @@
 
 
 
-.row-1 {
+.row-1,
+.row-2,
+.row-3 {
     display: flex;
     justify-content: space-around;
     border: 2px solid blue;
 }
 
-.row-2 {
-    display: flex;
-    justify-content: space-around;
-    border: 2px solid green;
-}
 
 button {
     font-size: 20px;
