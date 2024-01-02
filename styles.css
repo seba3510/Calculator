@@ -1,11 +1,11 @@
 .container {
-    /* box-sizing: border-box; */
+    /* box-sizing: content-box */
     border: 2px solid red;
     text-align: center;
     margin-left: 200px;
     margin-right: 215px;
-    padding-top: 20px;
-
+    padding-bottom: 50px;
+    /* margin-top: 60px; */
 }
 
 
@@ -29,7 +29,12 @@ button {
 
 
 input {
-    height: 25px;
+    height: 45px;
     width: 98.5%;
     text-align: right;
+
+}
+
+.screen {
+    margin-top: 10px;
 }
