@@ -1,5 +1,17 @@
-btn = document.querySelector(".btns");
+const btnsRef = document.querySelectorAll("button");
 
-btn.addEventListener("click", () => {
-    alert("You clicked me!");
+
+
+btnsRef.forEach((btn) => {
+
+    btn.addEventListener("click", () => {
+
+        console.log("Button Clicked: " + btn.textContent);
+
+    });
+
 });
+
+
+
+
