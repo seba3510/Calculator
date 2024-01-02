@@ -1,4 +1,8 @@
 .container {
-    display: flex;
-    justify-content: center;
+    box-sizing: border-box;
+    border: 2px solid red;
+    text-align: center;
 }
+
+
+.row-1 {}
