@@ -131,5 +131,23 @@ function sum(a, b) {
 
 } // sum()
 
+//=======================================================================================
+
+
+/**
+ * Subtracts two numbers
+ * @param {number} a - The first number
+ * @param {number} b - The second number
+ * @returns {number} - The difference of a and b
+ */
+function subtract(a, b) {
+
+
+    let diff = a - b;
+
+    return diff;
+
+} // subtract()
+
 
 
