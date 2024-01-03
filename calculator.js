@@ -229,5 +229,52 @@ function checkDivisor(divisor) {
 //=======================================================================================
 
 
+/**
+ * Populates the screen with the text content of a button.
+ *
+ * @param {HTMLButtonElement} button - The button element whose text content will be used to populate the screen.
+ *
+ */
+function populateScreen(button) {
+    /**
+     * The text content of the provided button.
+     * @type {string}
+     */
+    const btnText = button.textContent;
 
+    // display text content of the button
+    screenRef.value = btnText;
+} // populateScreen()
+
+//=======================================================================================
+
+
+/**
+ * Handles click events for a collection of buttons.
+ * Adds an event listener to each button in the collection to populate the screen when clicked.
+ *
+ * @param {NodeListOf<HTMLButtonElement>} buttons - The collection of buttons to attach click event listeners to.
+ */
+function handleClick(buttons) {
+
+
+    buttons.forEach(btn => {
+        /**
+         * Event handler for button click events. Passes the clicked button to {@link populateScreen}
+         *
+         * @param {Event} event - The click event object.
+         */
+        const clickHandler = function (event) {
+
+            populateScreen(event.target);
+        }; // clickHandler
+
+        // Add click event listener to each button.
+        btn.addEventListener("click", clickHandler);
+
+    }); // foreach()
+} // handleClick()
+
+
+handleClick(btnsRef);
 
