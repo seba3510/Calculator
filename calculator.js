@@ -177,5 +177,48 @@ function multiply(a, b) {
 
 } // multiply()
 
+//=======================================================================================
+
+/**
+ * Returns the division of two numbers
+ * @param {number} a - The first number
+ * @param {number} b - The second number
+ * @returns {number} The division of the two numbers
+ * @throws {Error} if the second number is 0
+ */
+function divide(a, b) {
+
+
+    checkDivisor(b);
+
+
+    /**
+     * Stores the result of dividing a and b
+     * @type {number}
+     */
+    let div = a / b;
+
+    return div;
+
+} // divide()
+
+//=======================================================================================
+
+
+
+function checkDivisor(divisor) {
+
+    if ((divisor == 0)) {
+        var err = "Cannot divide by 0!";
+        throw new Error(err);
+    } // if()
+
+
+} // checkDivisor()
+
+
+//=======================================================================================
+
+
 
 
