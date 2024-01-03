@@ -40,7 +40,7 @@ let b = 0;
  * @type {string}
  */
 let operator = "";
-
+``
 
 //=======================================================================================
 
@@ -64,3 +64,50 @@ const btnsRef = document.querySelectorAll("button");
 
 
 //=======================================================================================
+
+
+/**
+ * Performs a mathematical operation on two numbers based on the specified operator.
+ *
+ * @param {number} a - The first operand.
+ * @param {number} b - The second operand.
+ * @param {string} operator - The operator indicating the operation to be performed ('+', '-', '*', '÷').
+ * @returns {number} - The result of the specified operation.
+ * 
+ */
+function operate(a, b, operator) {
+    /**
+     * Stores the result of the operation.
+     * @type {number}
+     */
+    let result = 0;
+
+    // Perform the specified operation based on the provided operator.
+    switch ((operator)) {
+        case "+":
+
+            result = sum(a, b);
+            break;
+
+        case "-":
+
+            result = subtract(a, b);
+            break;
+
+        case "*":
+            result = multiply(a, b);
+            break;
+
+        case "÷":
+            result = divide(a, b);
+            break;
+
+        default:
+            break;
+    } // switch()
+
+    return result;
+} // operate()
+
+
+
