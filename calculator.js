@@ -110,4 +110,26 @@ function operate(a, b, operator) {
 } // operate()
 
 
+//=======================================================================================
+
+
+
+
+/**
+ * Calculates the sum of the specified numbers
+ * @param {number} a - The first number
+ * @param {number} b - The second number
+ * 
+ * @returns {number} - The sum of both numbers
+ */
+function sum(a, b) {
+
+
+    let sum = a + b;
+
+    return sum;
+
+} // sum()
+
+
 
