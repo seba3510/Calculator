@@ -40,7 +40,6 @@ let b = 0;
  * @type {string}
  */
 let operator = "";
-``
 
 //=======================================================================================
 
@@ -120,11 +119,14 @@ function operate(a, b, operator) {
  * @param {number} a - The first number
  * @param {number} b - The second number
  * 
- * @returns {number} - The sum of both numbers
+ * @returns {number} The sum of a and b
  */
 function sum(a, b) {
 
-
+    /**
+     * Stores the sum of a and b
+     * @type {number}
+     */
     let sum = a + b;
 
     return sum;
@@ -142,12 +144,38 @@ function sum(a, b) {
  */
 function subtract(a, b) {
 
-
+    /**
+     * Stores the difference of a and b
+     * @type {number}
+     */
     let diff = a - b;
 
     return diff;
 
 } // subtract()
+
+//=======================================================================================
+
+
+/**
+ * Multiplies two numbers
+ * @param {number} a - The first number
+ * @param {number} b - The second number
+ * @returns {number} - The product of a and b
+ */
+function multiply(a, b) {
+
+
+    /**
+     * Stores the product of a and b
+     * @type {number}
+     */
+    let mult = a * b;
+
+    return mult;
+
+
+} // multiply()
 
 
 
