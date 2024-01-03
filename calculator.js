@@ -105,7 +105,7 @@ function operate(a, b, operator) {
             break;
     } // switch()
 
-    return result;
+    screenRef.innerHTML = result;
 } // operate()
 
 
@@ -193,10 +193,14 @@ function divide(a, b) {
 
 
     /**
-     * Stores the result of dividing a and b
+     * Stores the result of dividing a and b.  The result is then rounded to prevent
+     * overflowing of the screen when displaying the result.
      * @type {number}
      */
-    let div = a / b;
+    let div = Math.floor(a / b);
+
+
+
 
     return div;
 
