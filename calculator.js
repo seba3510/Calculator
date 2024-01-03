@@ -85,27 +85,27 @@ function operate(a, b, operator) {
     switch ((operator)) {
         case "+":
 
-            return sum(a, b);
+            result = sum(a, b);
             break;
 
         case "-":
 
-            return subtract(a, b);
+            result = subtract(a, b);
             break;
 
         case "*":
-            return multiply(a, b);
+            result = multiply(a, b);
             break;
 
         case "÷":
-            return divide(a, b);
+            result = divide(a, b);
             break;
 
         default:
-            return undefined;
+            break;
     } // switch()
 
-
+    screenRef.textContent = result;
 } // operate()
 
 
@@ -229,3 +229,74 @@ function checkDivisor(divisor) {
 //=======================================================================================
 
 
+/**
+ * Populates the screen with the text content of a button.
+ *
+ * @param {HTMLButtonElement} button - The button element whose text content will be used to populate the screen.
+ *
+ */
+function populateScreen(button) {
+    /**
+     * The text content of the provided button.
+     * @type {string}
+     */
+    const btnText = button.textContent;
+
+    // display text content of the button
+    screenRef.value = btnText;
+} // populateScreen()
+
+//=======================================================================================
+
+
+/**
+ * Handles click events for a collection of buttons.
+ * Adds an event listener to each button in the collection to populate the screen when clicked.
+ *
+ * @param {NodeListOf<HTMLButtonElement>} buttons - The collection of buttons to attach click event listeners to.
+ */
+function handleClick(buttons) {
+
+
+
+    btnsRef.forEach(button => {
+
+
+        button.addEventListener("click", () => {
+
+            const btnVal = button.value;
+
+
+            if ((isNumber(btnVal))) {
+
+                handleNumbers();
+
+            }
+
+
+            else if ((isOperator(btnVal))) {
+
+                handleOperators();
+
+            }
+
+            else if ((isEqualsSign(btnVal))) {
+
+                handleEquals();
+            }
+
+
+        });
+
+    });
+
+
+} // handleClick()
+
+
+
+
+handleClick(btnsRef);
+
+
+console.log(isNumber(7));
