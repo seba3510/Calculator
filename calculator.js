@@ -210,7 +210,7 @@ function checkDivisor(divisor) {
 
     if ((divisor == 0)) {
         var err = "Cannot divide by 0!";
-        throw new Error(err);
+        alert(err);
     } // if()
 
 
