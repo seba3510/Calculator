@@ -127,7 +127,7 @@ function sum(a, b) {
      * Stores the sum of a and b
      * @type {number}
      */
-    let sum = a + b;
+    let sum = Math.floor(a + b);
 
     return sum;
 
@@ -148,7 +148,7 @@ function subtract(a, b) {
      * Stores the difference of a and b
      * @type {number}
      */
-    let diff = a - b;
+    let diff = Math.floor(a - b);
 
     return diff;
 
@@ -170,7 +170,7 @@ function multiply(a, b) {
      * Stores the product of a and b
      * @type {number}
      */
-    let mult = a * b;
+    let mult = Math.floor(a * b);
 
     return mult;
 
