@@ -205,12 +205,17 @@ function divide(a, b) {
 //=======================================================================================
 
 
-
+/**
+ * Checks if a divisor is 0.  
+ * @param {number} divisor - The divisor to be checked 
+ * @throws {Error} If the divisor is 0.  
+ */
 function checkDivisor(divisor) {
 
     if ((divisor == 0)) {
         var err = "Cannot divide by 0!";
         alert(err);
+        throw new Error(err);
     } // if()
 
 
