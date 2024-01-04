@@ -242,6 +242,10 @@ function populateScreen(button) {
      */
     const btnText = button.textContent;
 
+
+
+
+
     // display text content of the button
     screenRef.value = btnText;
     displayValue = screenRef.value;
@@ -250,46 +254,30 @@ function populateScreen(button) {
 //=======================================================================================
 
 
+
 /**
  * Handles click events for a collection of buttons.
  * Adds an event listener to each button in the collection to populate the screen when clicked.
  *
  * @param {NodeListOf<HTMLButtonElement>} buttons - The collection of buttons to attach click event listeners to.
  */
-function handleClick(buttons) {
+function handleClick(button) {
 
 
 
-    btnsRef.forEach(button => {
+
+    button.addEventListener("click", () => {
+        populateScreen(button);
 
 
-        button.addEventListener("click", () => {
-            populateScreen(button);
-            const btnVal = button.value;
+        handleNumbers(button.value);
+
+        handleOperators(button.value);
 
 
-            if ((isNumber(btnVal))) {
-
-                handleNumbers();
-
-            }
-
-
-            else if ((isOperator(btnVal))) {
-
-                handleOperators();
-
-            }
-
-            else if ((isEqualsSign(btnVal))) {
-
-                handleEquals();
-            }
-
-
-        });
 
     });
+
 
 
 } // handleClick()
@@ -309,9 +297,52 @@ function isNumber(value) {
     return ((!Number.isNaN(value)));
 } // isNumber()
 
+//=======================================================================================
 
 
-handleClick(btnsRef);
+
+
+
+function handleNumbers(val) {
+    if (operator === "" || (operator !== "" && a === 0)) {
+        a = Number(val);
+    } else {
+        b = Number(val);
+    }
+}
+
+
+
+function handleOperators(val) {
+    switch (val) {
+        case "+":
+            operator = val;
+        case "-":
+            operator = val;
+
+        case "*":
+            operator = val;
+
+        case "÷":
+            operator = val;
+            break;
+        default:
+            // Handle the default case if needed
+            break;
+    }
+}
+
+
+
+
+
+
+btnsRef.forEach(button => {
+    handleClick(button);
+});
+
+
+
 
 
 
