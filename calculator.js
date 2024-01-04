@@ -31,7 +31,7 @@ let b = 0;
 
 //=======================================================================================
 
-
+let displayValue = "";
 
 /**
  * Stores the operator. This determines the operation to be done with
@@ -244,6 +244,7 @@ function populateScreen(button) {
 
     // display text content of the button
     screenRef.value = btnText;
+    displayValue = screenRef.value;
 } // populateScreen()
 
 //=======================================================================================
@@ -263,7 +264,7 @@ function handleClick(buttons) {
 
 
         button.addEventListener("click", () => {
-
+            populateScreen(button);
             const btnVal = button.value;
 
 
@@ -293,10 +294,26 @@ function handleClick(buttons) {
 
 } // handleClick()
 
+//=======================================================================================
+
+
+
+/**
+ * Determines if the specified value is a number
+ * @param {string} value - the value to check
+ * @returns {boolean} true if the value is a number, false otherwise
+ */
+function isNumber(value) {
+
+
+    return ((!Number.isNaN(value)));
+} // isNumber()
 
 
 
 handleClick(btnsRef);
 
 
-console.log(isNumber(7));
+
+
+
