@@ -75,6 +75,9 @@ const btnsRef = document.querySelectorAll("button");
  * 
  */
 function operate(a, b, operator) {
+
+
+
     /**
      * Stores the result of the operation.
      * @type {number}
@@ -105,7 +108,8 @@ function operate(a, b, operator) {
             break;
     } // switch()
 
-    screenRef.textContent = result;
+    // return result;
+    alert(result);
 } // operate()
 
 
@@ -164,6 +168,8 @@ function subtract(a, b) {
  * @returns {number} - The product of a and b
  */
 function multiply(a, b) {
+
+
 
 
     /**
@@ -275,6 +281,12 @@ function handleClick(button) {
         handleOperators(button.value);
 
 
+        handleEquals(button.value);
+
+
+
+
+
 
     });
 
@@ -304,24 +316,39 @@ function isNumber(value) {
 
 
 function handleNumbers(val) {
-    if (operator === "" || (operator !== "" && a === 0)) {
-        a = Number(val);
-    } else {
-        b = Number(val);
+
+    // let val = document.querySelectorAll(".digit");
+
+    if ((operator == "") && (a == 0)) {
+        a = val;
+
     }
-}
+
+    else if ((operator != "") && (b == 0)) {
+
+        b = val;
+
+    }
+
+    // b = val;
+
+} // handleNumbers()
 
 
 
 function handleOperators(val) {
+
+    // let val = document.querySelectorAll(".operator")
     switch (val) {
         case "+":
             operator = val;
+            break;
         case "-":
             operator = val;
-
+            break;
         case "*":
             operator = val;
+            break;
 
         case "÷":
             operator = val;
@@ -335,6 +362,23 @@ function handleOperators(val) {
 
 
 
+function handleEquals(val) {
+
+    // let val = document.getElementById("equals");
+    if ((val == "=")) {
+        operate(a, b, operator);
+        a = 0;
+        b = 0;
+        operator = "";
+    }
+
+
+
+
+
+
+
+} // handleEquals()
 
 
 btnsRef.forEach(button => {
