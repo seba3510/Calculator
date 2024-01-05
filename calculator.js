@@ -80,7 +80,7 @@ function operate(a, b, operator) {
     a = parseFloat(a);
     b = parseFloat(b);
 
-    let result = 0;
+    let result = 0.00;
 
     // Perform the specified operation based on the provided operator.
     switch ((operator)) {
@@ -98,7 +98,7 @@ function operate(a, b, operator) {
             result = multiply(a, b);
             break;
 
-        case "÷":
+        case "/":
 
             result = divide(a, b);
             break;
@@ -197,8 +197,8 @@ function divide(a, b) {
     if ((b == 0)) {
 
         var err = "Cannot divide by 0!";
-        throw new Error(err);
         alert(err);
+        throw new Error(err);
 
     }
 
@@ -264,22 +264,7 @@ function handleClick() {
 
             }
 
-            else if ((isPercent(val))) {
 
-                let percent = calcPercentage(val);
-                displayResult(percent);
-
-            }
-
-            else if ((val == "+/-")) {
-
-                sign = "-"
-
-                handleClick(val);
-
-
-
-            }
 
         });
 
@@ -365,25 +350,6 @@ function isEqualSign(input) {
 console.log(isEqualSign("p"));
 
 //=======================================================================================
-function isPercent(input) {
-
-
-    return ((input == "%"));
-}
-
-//=======================================================================================
-
-function calcPercentage(value) {
-
-    value = Number(value);
-    let res = value / 100;
-
-
-    return res;
-
-} // calcPercentage()
-
-console.log(calcPercentage(8))
 
 
 function clearScreen() {
@@ -391,6 +357,8 @@ function clearScreen() {
     screenRef.value = "";
 }
 
+
+//=======================================================================================
 
 
 function isOperator(input) {
@@ -416,5 +384,8 @@ function displayResult(result) {
 } // displayResult()
 
 handleClick();
+
+
+
 
 
