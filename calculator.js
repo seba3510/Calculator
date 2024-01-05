@@ -249,8 +249,8 @@ function handleClick() {
             }
 
             else if ((isOperator(val))) {
-                operator = val;
                 clearScreen();
+                operator = val;
                 console.log("The operator is: " + operator);
 
 
@@ -259,6 +259,12 @@ function handleClick() {
             else if ((isEqualSign(val))) {
                 clearScreen();
                 operate(a, b, operator);
+
+            }
+
+            else if ((isPercent(val))) {
+
+                calcPercentage(val);
 
 
             }
@@ -334,6 +340,8 @@ function handleDigit(digit) {
 
 
 } // handleDigit()
+//=======================================================================================
+
 
 
 function isEqualSign(input) {
@@ -342,9 +350,28 @@ function isEqualSign(input) {
     return ((input == "="));
 }
 
-console.log(isEqualSign("="));
+console.log(isEqualSign("p"));
+
+//=======================================================================================
+function isPercent(input) {
 
 
+    return ((input == "%"));
+}
+
+//=======================================================================================
+
+function calcPercentage(value) {
+
+
+    let res = value / 100;
+
+
+    return res;
+
+} // calcPercentage()
+
+console.log(calcPercentage(8))
 
 
 function clearScreen() {
