@@ -51,7 +51,7 @@ let operator = "";
  * 
  * @type {HTMLElement}
  */
-const screenRef = document.getElementById("input-screen");
+const screenRef = document.querySelector("#input-screen");
 //=======================================================================================
 
 /**
@@ -235,160 +235,58 @@ function checkDivisor(divisor) {
 //=======================================================================================
 
 
-/**
- * Populates the screen with the text content of a button.
- *
- * @param {HTMLButtonElement} button - The button element whose text content will be used to populate the screen.
- *
- */
-function populateScreen(button) {
-    /**
-     * The text content of the provided button.
-     * @type {string}
-     */
-    const btnText = button.textContent;
+
+function handleClick() {
 
 
 
+    let n = btnsRef.length;
 
 
-    // display text content of the button
-    screenRef.value = btnText;
-    displayValue = screenRef.value;
-} // populateScreen()
+    for (let index = 0; index < n; index++) {
 
-//=======================================================================================
-
-
-
-/**
- * Handles click events for a collection of buttons.
- * Adds an event listener to each button in the collection to populate the screen when clicked.
- *
- * @param {NodeListOf<HTMLButtonElement>} buttons - The collection of buttons to attach click event listeners to.
- */
-function handleClick(button) {
+        const button = btnsRef[index];
 
 
 
+        button.addEventListener("click", () => {
 
-    button.addEventListener("click", () => {
-        populateScreen(button);
+            let val = button.value;
 
+            if ((isDigit(val))) {
 
-        handleNumbers(button.value);
+                appendDisplay(val);
+                handleDigit(val);
 
-        handleOperators(button.value);
+            }
 
+        });
 
-        handleEquals(button.value);
-
-
-
-
-
-
-    });
-
+    } // for()
 
 
 } // handleClick()
 
-//=======================================================================================
+function appendDisplay(input) {
+
+    screenRef.value += input;
+} // appendDisplay()
 
 
-
-/**
- * Determines if the specified value is a number
- * @param {string} value - the value to check
- * @returns {boolean} true if the value is a number, false otherwise
- */
-function isNumber(value) {
+function isDigit(str) {
 
 
-    return ((!Number.isNaN(value)));
-} // isNumber()
-
-//=======================================================================================
-
-
+    for (let i = 0; i < str.length; i++) {
+        if (str[i] < '0' || str[i] > '9') {
+            return false;
+        } // if()
 
 
-
-function handleNumbers(val) {
-
-    // let val = document.querySelectorAll(".digit");
-
-    if ((operator == "") && (a == 0)) {
-        a = val;
-
-    }
-
-    else if ((operator != "") && (b == 0)) {
-
-        b = val;
-
-    }
-
-    // b = val;
-
-} // handleNumbers()
-
-
-
-function handleOperators(val) {
-
-    // let val = document.querySelectorAll(".operator")
-    switch (val) {
-        case "+":
-            operator = val;
-            break;
-        case "-":
-            operator = val;
-            break;
-        case "*":
-            operator = val;
-            break;
-
-        case "÷":
-            operator = val;
-            break;
-        default:
-            // Handle the default case if needed
-            break;
-    }
-}
+    } // for()
+    return true;
+} // isDigit()
 
 
 
 
-function handleEquals(val) {
-
-    // let val = document.getElementById("equals");
-    if ((val == "=")) {
-        operate(a, b, operator);
-        a = 0;
-        b = 0;
-        operator = "";
-    }
-
-
-
-
-
-
-
-} // handleEquals()
-
-
-btnsRef.forEach(button => {
-    handleClick(button);
-});
-
-
-
-
-
-
-
-
+handleClick();
