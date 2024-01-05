@@ -16,6 +16,8 @@
  */
 let a = "";
 
+let sign = "";
+
 
 //=======================================================================================
 
@@ -264,7 +266,17 @@ function handleClick() {
 
             else if ((isPercent(val))) {
 
-                calcPercentage(val);
+                let percent = calcPercentage(val);
+                displayResult(percent);
+
+            }
+
+            else if ((val == "+/-")) {
+
+                sign = "-"
+
+                handleClick(val);
+
 
 
             }
@@ -363,7 +375,7 @@ function isPercent(input) {
 
 function calcPercentage(value) {
 
-
+    value = Number(value);
     let res = value / 100;
 
 
