@@ -18,7 +18,7 @@ This implementation of a simple calculator is a project developed as part of the
 
 
 ## Demo
-[Live Demo]()
+[Live Demo](https://seba3510.github.io/Calculator/)
 
 ## Credits
 - [https://www.theodinproject.com/paths/foundations/courses/foundations]
