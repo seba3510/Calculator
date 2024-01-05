@@ -12,9 +12,9 @@
 /**
  * Stores the first number
  * 
- * @type {number}   
+ * @type {string}   
  */
-let a = 0;
+let a = "";
 
 
 //=======================================================================================
@@ -24,14 +24,12 @@ let a = 0;
 /**
  * Stores the second number
  * 
- * @type {number}
+ * @type {string}
  */
 let b = 0;
 
 
 //=======================================================================================
-
-let displayValue = "";
 
 /**
  * Stores the operator. This determines the operation to be done with
@@ -77,12 +75,8 @@ const btnsRef = document.querySelectorAll("button");
 function operate(a, b, operator) {
 
 
-
-    /**
-     * Stores the result of the operation.
-     * @type {number}
-     */
-    let result = 0;
+    a = parseFloat(a);
+    b = parseFloat(b);
 
     // Perform the specified operation based on the provided operator.
     switch ((operator)) {
@@ -101,6 +95,7 @@ function operate(a, b, operator) {
             break;
 
         case "÷":
+
             result = divide(a, b);
             break;
 
@@ -194,16 +189,20 @@ function multiply(a, b) {
  */
 function divide(a, b) {
 
+    if ((b == 0)) {
 
-    checkDivisor(b);
+        var err = "Cannot divide by 0!";
+        throw new Error(err);
+        alert(err);
 
+    }
 
     /**
      * Stores the result of dividing a and b.  The result is then rounded to prevent
      * overflowing of the screen when displaying the result.
      * @type {number}
      */
-    let div = Math.floor(a / b);
+    let div = a / b;
 
 
 
@@ -258,6 +257,22 @@ function handleClick() {
                 appendDisplay(val);
                 handleDigit(val);
 
+
+            }
+
+            else if ((isOperator(val))) {
+
+                operator = val;
+                console.log("The operator is: " + operator);
+
+
+            }
+
+            else if ((isEqualSign(val))) {
+
+                operate(a, b, operator);
+
+
             }
 
         });
@@ -267,26 +282,98 @@ function handleClick() {
 
 } // handleClick()
 
-function appendDisplay(input) {
 
+//=======================================================================================
+
+
+/**
+ * Appends the given input to the value of the screen reference.
+ *
+ * @param {string} input - The input to be appended to the screen value.
+ * @returns {void}
+ */
+function appendDisplay(input) {
     screenRef.value += input;
 } // appendDisplay()
 
+//=======================================================================================
 
+
+/**
+ * Checks if the given string consists of only digits.
+ *
+ * @param {string} str - The string to be checked for digits.
+ * @returns {boolean} - True if the string consists of only digits, otherwise false.
+ */
 function isDigit(str) {
-
-
     for (let i = 0; i < str.length; i++) {
-        if (str[i] < '0' || str[i] > '9') {
+        if ((str[i] < '0') || (str[i] > '9')) {
             return false;
         } // if()
-
-
     } // for()
     return true;
 } // isDigit()
 
 
+//=======================================================================================
+
+
+
+
+
+
+function handleDigit(digit) {
+
+    if ((operator == "")) {
+
+        a += digit;
+        console.log("The value of A is: " + a);
+
+
+    }
+
+    else {
+
+        b = digit;
+        console.log("The value of B is: " + b);
+
+    }
+
+
+
+
+
+} // handleDigit()
+
+
+function isEqualSign(input) {
+
+
+    return ((input == "="));
+}
+
+console.log(isEqualSign("="));
+
+
 
 
 handleClick();
+
+
+
+function isOperator(input) {
+
+
+    if ((input == "+")
+        || (input == "-")
+        || (input == "*")
+        || (input == "/")) {
+        return true;
+    }
+
+
+    return false;
+
+} // input()
+
+
