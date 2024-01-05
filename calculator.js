@@ -26,7 +26,7 @@ let a = "";
  * 
  * @type {string}
  */
-let b = 0;
+let b = "";
 
 
 //=======================================================================================
@@ -78,6 +78,8 @@ function operate(a, b, operator) {
     a = parseFloat(a);
     b = parseFloat(b);
 
+    let result = 0;
+
     // Perform the specified operation based on the provided operator.
     switch ((operator)) {
         case "+":
@@ -103,8 +105,9 @@ function operate(a, b, operator) {
             break;
     } // switch()
 
-    // return result;
-    alert(result);
+
+    displayResult(result);
+
 } // operate()
 
 
@@ -214,21 +217,6 @@ function divide(a, b) {
 //=======================================================================================
 
 
-/**
- * Checks if a divisor is 0.  
- * @param {number} divisor - The divisor to be checked 
- * @throws {Error} If the divisor is 0.  
- */
-function checkDivisor(divisor) {
-
-    if ((divisor == 0)) {
-        var err = "Cannot divide by 0!";
-        alert(err);
-        throw new Error(err);
-    } // if()
-
-
-} // checkDivisor()
 
 
 //=======================================================================================
@@ -261,15 +249,15 @@ function handleClick() {
             }
 
             else if ((isOperator(val))) {
-
                 operator = val;
+                clearScreen();
                 console.log("The operator is: " + operator);
 
 
             }
 
             else if ((isEqualSign(val))) {
-
+                clearScreen();
                 operate(a, b, operator);
 
 
@@ -293,7 +281,9 @@ function handleClick() {
  * @returns {void}
  */
 function appendDisplay(input) {
+    //clearScreen();  
     screenRef.value += input;
+    // clearScreen();
 } // appendDisplay()
 
 //=======================================================================================
@@ -326,7 +316,7 @@ function handleDigit(digit) {
 
     if ((operator == "")) {
 
-        a += digit;
+        a = a.toString() + digit;
         console.log("The value of A is: " + a);
 
 
@@ -334,7 +324,7 @@ function handleDigit(digit) {
 
     else {
 
-        b = digit;
+        b = b.toString() + digit;
         console.log("The value of B is: " + b);
 
     }
@@ -357,7 +347,10 @@ console.log(isEqualSign("="));
 
 
 
-handleClick();
+function clearScreen() {
+
+    screenRef.value = "";
+}
 
 
 
@@ -375,5 +368,14 @@ function isOperator(input) {
     return false;
 
 } // input()
+
+
+function displayResult(result) {
+
+
+    screenRef.value = result;
+} // displayResult()
+
+handleClick();
 
 
