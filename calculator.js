@@ -205,9 +205,18 @@ function handleClick() {
             else if ((isEqualSign(val))) {
                 clearScreen();
                 operate(a, b, operator);
+
+            }
+
+            else if ((val == "clear")) {
+
+                clearScreen();
             }
 
         });
+
+
+
 
     } // for()
 } // handleClick()
@@ -287,6 +296,8 @@ function isEqualSign(input) {
  * Clears the calculator screen.
  */
 function clearScreen() {
+
+
     screenRef.value = "";
 } // clearScreen()
 
