@@ -12,7 +12,8 @@
 /**
  * Stores the first number
  * 
- * @type {string}   
+ * @type {string}
+ * @global   
  */
 let a = "";
 
@@ -20,6 +21,7 @@ let a = "";
  * Stores the second number
  * 
  * @type {string}
+ * @global
  */
 let b = "";
 
@@ -28,6 +30,7 @@ let b = "";
  * the 2 numbers (addition, subtraction, multiplication, or division)
  * 
  * @type {string}
+ * @global
  */
 let operator = "";
 
@@ -181,13 +184,25 @@ function handleClick() {
     let n = btnsRef.length;
 
     // iterate through all buttons
-    for (let index = 0; index < n; index++) {
+    for (let index = 0; (index < n); index++) {
+
+        /**
+         * Reference to the button that was clicked.  
+         * @type {HTMLButtonElement}
+         */
         const button = btnsRef[index];
 
         // add an event listener to each button 
         button.addEventListener("click", () => {
 
 
+
+
+
+            /**
+             * Represents the value of the button that was just clicked
+             * @type {string}
+             */
             let val = button.value;
 
             // check what type of button was clicked
@@ -247,16 +262,26 @@ function isDigit(str) {
     let n = str.length;
 
 
+    let result = false;
+
     for (let i = 0; i < n; i++) {
 
-        if (((str[i] < '0'))
-            || ((str[i] > '9'))) {
-            return false;
+
+
+        let char = str[i];
+
+
+        if (((char < '0'))
+            || ((char > '9'))) {
+            return result;
         } // if()
+
+
+        result = true;
 
     } // for()
 
-    return true;
+    return result;
 } // isDigit()
 
 //=======================================================================================
@@ -267,7 +292,7 @@ function isDigit(str) {
  * @param {string} digit - The digit to be handled.
  */
 function handleDigit(digit) {
-    if ((operator === "")) {
+    if ((operator == "")) {
         a = a.toString() + digit;
         //console.log("The value of A is: " + a);
     }
@@ -287,7 +312,7 @@ function handleDigit(digit) {
  * @returns {boolean} - True if the input is the equal sign, otherwise false.
  */
 function isEqualSign(input) {
-    return ((input === "="));
+    return ((input == "="));
 }
 
 //=======================================================================================
@@ -326,5 +351,27 @@ function displayResult(result) {
 
 //=======================================================================================
 
+
+/**
+ * Resets the values of  {@link a},
+ * {@link b}, and {@link operator}
+ * 
+ */
+function resetValues() {
+
+
+    a = "";
+    b = "";
+    operator = "";
+
+} // resetValues()
+
+//=======================================================================================
+
+
+
+
 // Initialize the event handlers
 handleClick();
+
+
