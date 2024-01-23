@@ -388,6 +388,10 @@ function checkDivisor(divisor) {
 
 } // checkDivisor()
 
+
+//=======================================================================================
+
+
 // Initialize the event handlers
 handleClick();
 
