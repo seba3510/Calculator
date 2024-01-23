@@ -155,12 +155,8 @@ function multiply(a, b) {
  */
 function divide(a, b) {
 
-    // check if the divisor is 0
-    if ((b == 0)) {
-        var err = "Cannot divide by 0!";
-        alert(err);
-        throw new Error(err);
-    } // if()
+
+    checkDivisor(b);
 
 
     /**
@@ -368,8 +364,29 @@ function resetValues() {
 
 //=======================================================================================
 
+/**
+ * Checks if the given divisor is valid and not equal to zero.
+ *
+ * This function throws an error and displays an alert if the divisor is zero,
+ * as division by zero is not allowed.
+ *
+ * @param {number} divisor - The divisor to be checked.
+ * @throws {Error} Throws an error with a message if the divisor is zero.
+ * @returns {void}
+ */
+function checkDivisor(divisor) {
 
 
+    if ((divisor == 0)) {
+        var err = "Cannot divide by 0!";
+        alert(err);
+        throw new Error(err);
+    } // if()
+
+
+
+
+} // checkDivisor()
 
 // Initialize the event handlers
 handleClick();
