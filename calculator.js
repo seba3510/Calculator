@@ -87,6 +87,7 @@ function operate(a, b, operator) {
     } // switch()
 
     displayResult(result);
+    resetValues();
 } // operate()
 
 //=======================================================================================
