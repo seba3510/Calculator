@@ -21,7 +21,7 @@ let a = "";
  * Stores the second number
  * 
  * @type {string}
- * @global
+ * @global 
  */
 let b = "";
 
@@ -279,7 +279,13 @@ function isDigit(str) {
     } // for()
 
     return result;
+
+
+
 } // isDigit()
+
+
+
 
 //=======================================================================================
 
@@ -310,8 +316,7 @@ function handleDigit(digit) {
  */
 function isEqualSign(input) {
     return ((input == "="));
-}
-
+}//isEqualSign()
 //=======================================================================================
 
 /**
@@ -346,22 +351,6 @@ function displayResult(result) {
     screenRef.value = result;
 } // displayResult()
 
-//=======================================================================================
-
-
-/**
- * Resets the values of  {@link a},
- * {@link b}, and {@link operator}
- * 
- */
-function resetValues() {
-
-
-    a = "";
-    b = "";
-    operator = "";
-
-} // resetValues()
 
 //=======================================================================================
 
