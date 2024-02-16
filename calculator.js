@@ -34,6 +34,9 @@ let b = "";
  */
 let operator = "";
 
+
+
+
 /**
  * Reference to the screen that displays the output of the operation
  * 
@@ -86,8 +89,12 @@ function operate(a, b, operator) {
             break;
     } // switch()
 
-    displayResult(result);
-    resetValues();
+
+
+
+    return displayResult(result);
+
+
 } // operate()
 
 //=======================================================================================
@@ -181,7 +188,7 @@ function handleClick() {
     let n = btnsRef.length;
 
     // iterate through all buttons
-    for (let index = 0; (index < n); index++) {
+    for (let index = 0; (index <= n - 1); index++) {
 
         /**
          * Reference to the button that was clicked.  
@@ -217,13 +224,19 @@ function handleClick() {
             else if ((isEqualSign(val))) {
                 clearScreen();
                 operate(a, b, operator);
+                resetValues();
+
+
 
             }
 
             else if ((val == "clear")) {
 
                 clearScreen();
+
             }
+
+
 
         });
 
@@ -320,12 +333,13 @@ function isEqualSign(input) {
 //=======================================================================================
 
 /**
- * Clears the calculator screen.
+ * Clears the calculator screen.=
  */
 function clearScreen() {
 
 
     screenRef.value = "";
+
 } // clearScreen()
 
 //=======================================================================================
@@ -337,7 +351,7 @@ function clearScreen() {
  * @returns {boolean} - True if the input is an operator, otherwise false.
  */
 function isOperator(input) {
-    return (((input === "+")) || ((input === "-")) || ((input === "*")) || ((input === "/")));
+    return (((input == "+")) || ((input == "-")) || ((input == "*")) || ((input == "/")));
 } // input()
 
 //=======================================================================================
@@ -377,6 +391,15 @@ function checkDivisor(divisor) {
 
 
 } // checkDivisor()
+
+/**
+ * Resets the values of {@link a}, {@link b}, and {@link operator}.
+ */
+function resetValues() {
+    a = "";
+    b = "";
+    operator = "";
+} // resetValues()
 
 
 //=======================================================================================
