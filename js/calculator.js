@@ -1,399 +1,213 @@
-/**
- * This script implements a basic calculator with addition, subtraction,
- * multiplication, and division operations.
- * 
- * @author Sebastian Corporan Berrios
- */
-
-
-//=======================================================================================
-
-
-/**
- * Stores the first number
- * 
- * @type {string}
- * @global   
- */
 let a = "";
 
-/**
- * Stores the second number
- * 
- * @type {string}
- * @global
- */
 let b = "";
 
-/**
- * Stores the operator. This determines the operation to be done with
- * the 2 numbers (addition, subtraction, multiplication, or division)
- * 
- * @type {string}
- * @global
- */
 let operator = "";
 
-/**
- * Reference to the screen that displays the output of the operation
- * 
- * @type {HTMLElement}
- */
-const screenRef = document.querySelector("#input-screen");
+const screenElem = document.querySelector("#input-screen");
 
-/**
- * Reference to all of the buttons of the calculator
- * 
- * @type {NodeList}
- */
-const btnsRef = document.querySelectorAll("button");
-
+const btnsElem = document.querySelectorAll("button");
 
 //=======================================================================================
 
-/**
- * Performs a mathematical operation on two numbers based on the specified operator.
- *
- * @param {number} a - The first operand.
- * @param {number} b - The second operand.
- * @param {string} operator - The operator indicating the operation to be performed ('+', '-', '*', '÷').
- * @returns {number} - The result of the specified operation.
- */
+
 function operate(a, b, operator) {
 
-    // convert a and b to floating point numbers
-    a = parseFloat(a);
-    b = parseFloat(b);
+	a = parseFloat(a);
+	b = parseFloat(b);
 
+	let result = parseFloat(0);
 
-    let result = 0;
+	// Perform the specified operation based on the provided operator.
+	switch ((operator)) {
+		case "+":
+			result = sum(a, b);
+			break;
+		case "-":
+			result = subtract(a, b);
+			break;
+		case "*":
+			result = multiply(a, b);
+			break;
+		case "/":
+			result = divide(a, b);
+			break;
+		default:
+			break;
+	} // switch()
 
-    // Perform the specified operation based on the provided operator.
-    switch ((operator)) {
-        case "+":
-            result = sum(a, b);
-            break;
-        case "-":
-            result = subtract(a, b);
-            break;
-        case "*":
-            result = multiply(a, b);
-            break;
-        case "/":
-            result = divide(a, b);
-            break;
-        default:
-            break;
-    } // switch()
-
-    displayResult(result);
-    resetValues();
+	displayResult(result);
 } // operate()
 
 //=======================================================================================
 
-/**
- * Calculates the sum of the specified numbers
- * 
- * @param {number} a - The first number
- * @param {number} b - The second number
- * @returns {number} The sum of a and b
- */
+
 function sum(a, b) {
-    /**
-     * Stores the sum of a and b
-     * @type {number}
-     */
-    let sum = Math.floor(a + b);
-    return sum;
+	let sum = Math.floor(a + b);
+	return sum;
 } // sum()
 
 //=======================================================================================
 
-/**
- * Subtracts two numbers
- * 
- * @param {number} a - The first number
- * @param {number} b - The second number
- * @returns {number} - The difference of a and b
- */
+
 function subtract(a, b) {
-    /**
-     * Stores the difference of a and b
-     * @type {number}
-     */
-    let diff = Math.floor(a - b);
-    return diff;
+	let diff = Math.floor(a - b);
+	return diff;
 } // subtract()
 
 //=======================================================================================
 
-/**
- * Multiplies two numbers
- * 
- * @param {number} a - The first number
- * @param {number} b - The second number
- * @returns {number} - The product of a and b
- */
 function multiply(a, b) {
-    /**
-     * Stores the product of a and b
-     * @type {number}
-     */
-    let mult = Math.floor(a * b);
-    return mult;
+	let mult = Math.floor(a * b);
+	return mult;
 } // multiply()
 
 //=======================================================================================
 
-/**
- * Returns the division of two numbers
- * 
- * @param {number} a - The first number
- * @param {number} b - The second number
- * @returns {number} The division of the two numbers
- * @throws {Error} if the second number is 0
- */
 function divide(a, b) {
 
+	checkDivisor(b);
 
-    checkDivisor(b);
+	let div = Math.floor(a / b);
 
-
-    /**
-     * Stores the result of dividing a and b. The result is then rounded to prevent
-     * overflowing of the screen when displaying the result.
-     * @type {number}
-     */
-    let div = Math.floor(a / b);
-
-    return div;
+	return div;
 } // divide()
 
 //=======================================================================================
 
-/**
- * Handles button clicks and performs corresponding actions.
- */
+
 function handleClick() {
 
+	let n = btnsElem.length;
 
-    let n = btnsRef.length;
+	for (let index = 0; index < n; index++) {
 
-    // iterate through all buttons
-    for (let index = 0; (index < n); index++) {
+		let button = btnsElem[index];
 
-        /**
-         * Reference to the button that was clicked.  
-         * @type {HTMLButtonElement}
-         */
-        const button = btnsRef[index];
+		button.addEventListener("click", () => {
 
-        // add an event listener to each button 
-        button.addEventListener("click", () => {
+			let val = button.value;
 
+			// check what type of button was clicked
+			if ((isDigit(val))) {
+				appendDisplay(val);
+				handleDigit(val);
+			}// if
 
+			else if ((isOperator(val))) {
+				clearScreen();
+				operator = val;
+			}// else if
 
+			else if ((isEqualSign(val))) {
+				clearScreen();
+				operate(a, b, operator);
+				a = screenElem.value;
+				b = "";
+				operator = "";
+			}// else if
 
+			else if ((val === "clear")) {
+				clearScreen();
+				resetValues();
+			}// else if
+		});
 
-            /**
-             * Represents the value of the button that was just clicked
-             * @type {string}
-             */
-            let val = button.value;
-
-            // check what type of button was clicked
-            if ((isDigit(val))) {
-                appendDisplay(val);
-                handleDigit(val);
-            }
-
-            else if ((isOperator(val))) {
-                clearScreen();
-                operator = val;
-                //console.log("The operator is: " + operator);
-            }
-
-            else if ((isEqualSign(val))) {
-                clearScreen();
-                operate(a, b, operator);
-
-            }
-
-            else if ((val == "clear")) {
-
-                clearScreen();
-            }
-
-        });
-
-
-
-
-    } // for()
+		continue;
+	} // for()
 } // handleClick()
 
 //=======================================================================================
 
-/**
- * Appends the given input to the value of the screen reference.
- *
- * @param {string} input - The input to be appended to the screen value.
- */
 function appendDisplay(input) {
-    //clearScreen();  
-    screenRef.value += input;
+	screenElem.value += input;
 } // appendDisplay()
 
 //=======================================================================================
 
-/**
- * Checks if the given string consists of only digits.
- *
- * @param {string} str - The string to be checked for digits.
- * @returns {boolean} - True if the string consists of only digits, otherwise false.
- */
+
 function isDigit(str) {
+	let n = str.length;
 
+	let result = false;
 
-    let n = str.length;
+	for (let i = 0; i < n; i++) {
 
+		let char = str[i];
 
-    let result = false;
+		if ((char < "0") ||
+			(char > "9")) {
+			return result;
+		} // if
 
-    for (let i = 0; i < n; i++) {
+		result = true;
+	} // for()
 
-
-
-        let char = str[i];
-
-
-        if (((char < '0'))
-            || ((char > '9'))) {
-            return result;
-        } // if()
-
-
-        result = true;
-
-    } // for()
-
-    return result;
+	return result;
 } // isDigit()
 
 //=======================================================================================
 
-/**
- * Handles the input of digits and updates the corresponding operand (a or b).
- * 
- * @param {string} digit - The digit to be handled.
- */
-function handleDigit(digit) {
-    if ((operator == "")) {
-        a = a.toString() + digit;
-        //console.log("The value of A is: " + a);
-    }
 
-    else {
-        b = b.toString() + digit;
-        //console.log("The value of B is: " + b);
-    }
+function handleDigit(digit) {
+	if ((operator === "")) {
+		a = a.toString() + digit;
+	}// if
+
+	else if ((a != "")) {
+		b = b.toString() + digit;
+	}// else if
 } // handleDigit()
 
 //=======================================================================================
 
-/**
- * Checks if the given input is the equal sign (=).
- * 
- * @param {string} input - The input to be checked.
- * @returns {boolean} - True if the input is the equal sign, otherwise false.
- */
-function isEqualSign(input) {
-    return ((input == "="));
-}
 
+function isEqualSign(input) {
+	return ((input === "="));
+} //isEqualSign()
 //=======================================================================================
 
-/**
- * Clears the calculator screen.
- */
 function clearScreen() {
-
-
-    screenRef.value = "";
+	screenElem.value = "";
 } // clearScreen()
 
 //=======================================================================================
 
-/**
- * Checks if the given input is an operator (+, -, *, /).
- * 
- * @param {string} input - The input to be checked.
- * @returns {boolean} - True if the input is an operator, otherwise false.
- */
+
 function isOperator(input) {
-    return (((input === "+")) || ((input === "-")) || ((input === "*")) || ((input === "/")));
+	return ((input === "+")) ||
+		((input === "-")) ||
+		((input === "*")) ||
+		((input === "/"));
 } // input()
 
 //=======================================================================================
 
-/**
- * Displays the result on the calculator screen.
- * 
- * @param {number} result - The result to be displayed.
- */
+
 function displayResult(result) {
-    screenRef.value = result;
+	screenElem.value = result;
 } // displayResult()
 
 //=======================================================================================
 
 
-/**
- * Resets the values of  {@link a},
- * {@link b}, and {@link operator}
- * 
- */
+function checkDivisor(divisor) {
+	if ((divisor == 0)) {
+		var err = "Cannot divide by 0!";
+		alert(err);
+		throw new Error(err);
+	} // if
+} // checkDivisor()
+//=======================================================================================
+
 function resetValues() {
-
-
-    a = "";
-    b = "";
-    operator = "";
-
+	a = "";
+	b = "";
+	operator = "";
 } // resetValues()
 
 //=======================================================================================
 
-/**
- * Checks if the given divisor is valid and not equal to zero.
- *
- * This function throws an error and displays an alert if the divisor is zero,
- * as division by zero is not allowed.
- *
- * @param {number} divisor - The divisor to be checked.
- * @throws {Error} Throws an error with a message if the divisor is zero.
- * @returns {void}
- */
-function checkDivisor(divisor) {
 
-
-    if ((divisor == 0)) {
-        var err = "Cannot divide by 0!";
-        alert(err);
-        throw new Error(err);
-    } // if()
-
-
-
-
-} // checkDivisor()
-
-
-//=======================================================================================
-
-
-// Initialize the event handlers
 handleClick();
-
 
